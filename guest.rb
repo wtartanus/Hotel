@@ -1,12 +1,26 @@
 #Class Guest
 
-#Should have:
- #name
- #money
- # ??? number of extra guests ???
+class Guest
+
+  #Should have:
+   #name
+   #money
+   # ??? number of extra guests ???
+
+  attr_accessor :name, :money
+
+ def initialize(name, money)
+  @name = name 
+  @money = money
+ end
 
 
- #methods
+ def loose_money( payment )
+  @money -= payment
+ end
 
-  # room request - booking
-  #loose money
+ # room request - booking
+    
+
+end
+
