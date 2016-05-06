@@ -36,9 +36,9 @@ class TestRomm < MiniTest::Test
   end
 
   def test_room_clean_status
-    assert_equal( "clean", @single_room.clean_status)
-    assert_equal( "clean", @double_single.clean_status)
-    assert_equal( "clean", @double.clean_status )
+    assert_equal( "clean", @single_room.clean_status[0])
+    assert_equal( "clean", @double_single.clean_status[0])
+    assert_equal( "clean", @double.clean_status[0] )
   end
 
   def test_room_guest_in
@@ -48,6 +48,37 @@ class TestRomm < MiniTest::Test
   end
 
   def test_room_booking_status
+    assert_equal( false, @single_room.booking_status[:status])
+    assert_equal( "", @double_single.booking_status[:guest_name])
+    assert_equal( false, @double.booking_status[:status])
+  end
+
+  def test_change_clean_status
+    @single_room.change_clean_status
+    @double_single.change_clean_status
+    @double.change_clean_status
+    assert_equal("dirty", @single_room.clean_status[0])
+    assert_equal("dirty", @double_single.clean_status[0])
+    assert_equal("dirty", @double.clean_status[0])
+  end
+
+  def test_book_room
+    @single_room.book_room( "Wojtek Tartanus" )
+    @double_single.book_room( "Basia Nagy" )
+    @double.book_room( "Piotr Siemczuk" )
+    assert_equal( true, @single_room.booking_status[:status])
+    assert_equal( "Basia Nagy", @double_single.booking_status[:guest_name])
+    assert_equal( true, @double.booking_status[:status])
+  end
+
+  def test_outbook_room
+    @single_room.book_room( "Wojtek Tartanus" )
+    @double_single.book_room( "Basia Nagy" )
+    @double.book_room( "Piotr Siemczuk" )
+
+    @single_room.outbook_room
+    @double_single.outbook_room
+    @double.outbook_room
     assert_equal( false, @single_room.booking_status[:status])
     assert_equal( "", @double_single.booking_status[:guest_name])
     assert_equal( false, @double.booking_status[:status])
