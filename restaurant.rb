@@ -1,4 +1,9 @@
+
+
+
 #Class Restaurant
+class Restaurant
+end
 
  #Should have
   #name

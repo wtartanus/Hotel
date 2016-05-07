@@ -126,6 +126,13 @@ class TestHotel < MiniTest::Test
     @hotel.check_out( @guest1 )
     assert_equal( "dirty", @hotel.rooms[0].clean_status[0] )
   end
+
+  def test_room_service
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+    @hotel.rooms[0].room_service( 10 )
+    assert_equal(80, @hotel.rooms[0].price)
+  end
   
 end
 
