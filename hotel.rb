@@ -76,6 +76,19 @@ class Hotel
 
 
      #check in 
+     def check_in( guest )
+
+      guest_name = guest.name
+
+      for room in rooms
+        if room.booking_status[:guest_name] == guest_name
+          room.booking_status[:guest_name] = ""
+          room.booking_status[:status] = false
+          room.guest_in = guest_name
+        end
+      end
+
+     end
       #alocate customer in choosen room
       #change room avability
 

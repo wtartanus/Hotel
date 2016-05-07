@@ -76,5 +76,50 @@ class TestHotel < MiniTest::Test
     @hotel.booking( @guest1, "single" )
     assert_equal( true, @hotel.rooms[0].booking_status[:status])
   end
+
+  def test_hotel_check_in_guest_in
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+    assert_equal("Wojtek", @hotel.rooms[0].guest_in )
+  end
+
+  def test_hotel_check_in_booking_status
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+    assert_equal( false, @hotel.rooms[0].booking_status[:status] )
+  end
+
+  def test_hotel_check_in_booking_status_name
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+    assert_equal( "", @hotel.rooms[0].booking_status[:guest_name] )
+  end
   
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
