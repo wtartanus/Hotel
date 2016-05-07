@@ -45,6 +45,12 @@ class TestHotel_chain < MiniTest::Test
   #   Long array
   # end
 
+  def test_hotels_avability
+    test = @hilton.check_avabality
+    assert_equal( ["Jurys", 3, "Mariot", 3], test)
+  end
+  
+
 
 
 
