@@ -36,7 +36,7 @@ class TestHotel < MiniTest::Test
   #   @hotel.rooms
   #   pretty long array
   # end
-
+  
   def test_room_is_empty?
     test = @hotel.is_empty?( "double" )
     assert_equal( true, test )
@@ -93,6 +93,38 @@ class TestHotel < MiniTest::Test
     @hotel.booking( @guest1, "single" )
     @hotel.check_in( @guest1 )
     assert_equal( "", @hotel.rooms[0].booking_status[:guest_name] )
+  end
+
+  def test_hotel_check_out_guest_in
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+
+    @hotel.check_out( @guest1 )
+    assert_equal( "", @hotel.rooms[0].guest_in )
+  end
+
+  def test_hotel_check_out_guest_loose_money
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+
+    @hotel.check_out( @guest1 )
+    assert_equal( 930, @guest1.money )
+  end
+
+  def test_hotel_check_out_hotel_add_money
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+
+    @hotel.check_out( @guest1 )
+    assert_equal( 10070, @hotel.bank )
+  end
+
+  def test_hotel_check_out_change_clean_status
+    @hotel.booking( @guest1, "single" )
+    @hotel.check_in( @guest1 )
+
+    @hotel.check_out( @guest1 )
+    assert_equal( "dirty", @hotel.rooms[0].clean_status[0] )
   end
   
 end

@@ -80,6 +80,9 @@ class Hotel
 
       guest_name = guest.name
 
+      #alocate customer in choosen room
+      #change room avability
+
       for room in rooms
         if room.booking_status[:guest_name] == guest_name
           room.booking_status[:guest_name] = ""
@@ -89,13 +92,69 @@ class Hotel
       end
 
      end
-      #alocate customer in choosen room
-      #change room avability
+     
 
      #check out 
-      #change room avability
+    def check_out( guest )
+
+      guest_name = guest.name
+
+      room_price = ""
+
+      room_type = ""
+      
       #romove customer from room
+        for room in rooms
+          if room.guest_in == guest_name
+            room.guest_in = ""
+            room_price = room.price - 50
+            room_type = room.number_beds
+          end
+        end
+
       #charge customer ( customer loose money )
+      guest.loose_money( room_price )
+
       #add to bank room price
+      add_money( room_price )
+
       #change room cleaning status
+      for room in rooms
+        if room.number_beds == room_type
+          room.change_clean_status
+        end
+      end
+
+    end
+
+
+    
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
