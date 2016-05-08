@@ -25,12 +25,12 @@
 
 class Room
 
-   attr_accessor :clean_status, :guest_in, :booking_status
+   attr_accessor :room_number, :clean_status, :guest_in, :booking_status
 
-   attr_reader :type, :number_beds, :price, :view
+   attr_reader :number_beds, :price, :view
    
-   def initialize(type,number_beds, price, view)
-    @type = type
+   def initialize( room_number, number_beds, price, view)
+    @room_number = room_number
     @number_beds = number_beds
     @price = price
     @view = view

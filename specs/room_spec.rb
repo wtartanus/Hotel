@@ -6,15 +6,15 @@ require_relative( "../room.rb" )
 class TestRomm < MiniTest::Test
 
   def setup
-    @single_room = Room.new("normal", "single", 70, "sea" )
-    @double_single = Room.new("normal", "two single", 60, "normal" )
-    @double = Room.new("king", "double", 200, "sea")
+    @single_room = Room.new( 1, "single", 70, "sea" )
+    @double_single = Room.new( 2, "two single", 60, "normal" )
+    @double = Room.new( 3, "double", 200, "sea")
   end
 
-  def test_create_room_type
-    assert_equal("normal", @single_room.type)
-    assert_equal("normal", @double_single.type)
-    assert_equal("king", @double.type)
+  def test_create_room_number
+    assert_equal( 1, @single_room.room_number)
+    assert_equal( 2, @double_single.room_number)
+    assert_equal( 3, @double.room_number)
   end
 
   def test_create_room_number_beds

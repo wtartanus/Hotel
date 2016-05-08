@@ -25,8 +25,8 @@ class TestHotel_chain < MiniTest::Test
     rooms = [ single_room, double_single, double ]
     roms1 = [ single_room1, double_single1, double1 ]
 
-    hotel = Hotel.new("Jurys", 10000, rooms)
-    hotel2 = Hotel.new("Mariot", 5000, roms1)
+    hotel = Hotel.new("Jurys", 10000, rooms, "Casablanca" )
+    hotel2 = Hotel.new("Mariot", 5000, roms1, "Valentinos" )
 
     hotels = [ hotel, hotel2 ]
 
