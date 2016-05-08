@@ -4,6 +4,8 @@ require( "pry-byebug" )
 require_relative( "../hotel.rb" )
 require_relative( "../room.rb" )
 require_relative( "../guest.rb" )
+require_relative( "../restaurant.rb" )
+require_relative( "../tables_data.rb" )
 
 
 class TestHotel < MiniTest::Test
@@ -19,7 +21,9 @@ class TestHotel < MiniTest::Test
     
     rooms = [ single_room, double_single, double ]
 
-    @hotel = Hotel.new("Jurys", 10000, rooms)
+    restaurant = Restaurant.new("Casablanca", TABLES)
+
+    @hotel = Hotel.new("Jurys", 10000, rooms, restaurant)
 
   end
 
@@ -130,10 +134,25 @@ class TestHotel < MiniTest::Test
   def test_room_service
     @hotel.booking( @guest1, "single" )
     @hotel.check_in( @guest1 )
-    @hotel.rooms[0].room_service( 10 )
+    @hotel.rooms[0].room_service_add_price( 10 )
     assert_equal(80, @hotel.rooms[0].price)
   end
+
+  def test_hotel_create_restaurant_name
+    assert_equal("Casablanca", @hotel.restaurant.name)
+  end
+
+  # def test_hotel_create_restaurant_tables
+  #   binding.pry
+  #   @hotel.restaurant.tables
+  #   long array
+  # end
   
+  def test_hotel_room_service 
+    @hotel.room_service( 1, "Burger")
+    assert_equal([{:room_number=>1, :on_order=>"Burger"}], @hotel.restaurant.room_service)
+  end
+
 end
 
 

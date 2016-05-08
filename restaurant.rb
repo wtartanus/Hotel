@@ -6,12 +6,13 @@ class Restaurant
   #Should have
    #name #number of tables #number of chairs #sitting time????
 
-   attr_accessor :name, :tables
+   attr_accessor :name, :tables, :room_service
    
   
   def initialize(name, tables)
     @name = name
     @tables = tables
+    @room_service = []
   end
 
 

@@ -4,15 +4,16 @@ class Hotel
   #Should have:
   #name #bank #rooms = []  # ????restaurant
   
-  attr_accessor :name, :bank, :rooms
+  attr_accessor :name, :bank, :rooms, :restaurant
 
   attr_reader :booking_fee
 
-  def initialize(name,bank,rooms)
+  def initialize( name, bank, rooms, restaurant )
     @name = name
     @bank = bank
     @rooms = rooms
     @booking_fee = 50
+    @restaurant = restaurant
   end
   
 
@@ -124,6 +125,17 @@ class Hotel
           room.change_clean_status
         end
       end
+
+    end
+
+    def room_service( room, item )
+      
+      room_index = room - 1
+      rooms[room_index].room_service_add_price( 10 )
+
+      order = { room_number: room, on_order: item }
+
+      @restaurant.room_service << order
 
     end
 

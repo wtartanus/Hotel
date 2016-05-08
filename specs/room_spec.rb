@@ -62,8 +62,8 @@ class TestRomm < MiniTest::Test
     assert_equal("dirty", @double.clean_status[0])
   end
 
-  def test_change_clean_status
-    @single_room.room_service( 10 )
+  def test_change_room_service_add_price
+    @single_room.room_service_add_price( 10 )
     assert_equal( 80, @single_room.price)
   end
 

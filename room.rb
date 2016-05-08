@@ -57,7 +57,7 @@ class Room
     @booking_status[:guest_name] = ""
    end
 
-   def room_service( price )
+   def room_service_add_price( price )
      @price += price
    end
 
